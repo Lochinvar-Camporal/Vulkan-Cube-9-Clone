@@ -1,5 +1,5 @@
-use ash::{vk};
-use cgmath::{Matrix4, Point3, Vector3};
+use ash::vk;
+use cgmath::{Matrix4, SquareMatrix};
 
 use super::{utils::{QueueFamilyIndices, UniformBufferObject}, vertex::{Vertex, INDICES}, VulkanApp};
 
@@ -140,9 +140,7 @@ pub fn create_uniform_buffers(
 
 impl VulkanApp {
     pub fn update_uniform_buffer(&self, current_image: usize, camera: &crate::camera::Camera) {
-        let time = self.start_time.elapsed().as_secs_f32();
-
-        let model = Matrix4::from_angle_z(cgmath::Deg(time * 90.0));
+        let model = Matrix4::identity();
         let view = camera.view_matrix();
         let mut proj = cgmath::perspective(
             cgmath::Deg(45.0),
