@@ -1,6 +1,5 @@
 use ash::{vk, Entry};
 use raw_window_handle::{HasRawDisplayHandle, HasRawWindowHandle};
-use std::time::Instant;
 
 use super::utils::{QueueFamilyIndices, UniformBufferObject};
 use super::vertex::{Vertex, INDICES, VERTICES, generate_wireframe_vertices};
@@ -47,7 +46,6 @@ pub struct VulkanApp {
     pub(super) descriptor_set_layout: vk::DescriptorSetLayout,
     pub(super) descriptor_pool: vk::DescriptorPool,
     pub(super) descriptor_sets: Vec<vk::DescriptorSet>,
-    pub(super) start_time: Instant,
     pub(super) depth_image: vk::Image,
     pub(super) depth_image_memory: vk::DeviceMemory,
     pub(super) depth_image_view: vk::ImageView,
@@ -207,7 +205,6 @@ impl VulkanApp {
             descriptor_set_layout,
             descriptor_pool,
             descriptor_sets,
-            start_time: Instant::now(),
             depth_image,
             depth_image_memory,
             depth_image_view,
